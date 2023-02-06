@@ -19,6 +19,8 @@
 **/.tar.gz
 **/.rar
 
+lab1/hello-lambda/.idea
+
 
 # Log file
 *.log
