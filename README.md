@@ -10,6 +10,9 @@
 - Python
 	- https://www.youtube.com/watch?v=seaBeltaKhw&t=332s
 - Java
-	- https://www.youtube.com/watch?v=MaHxZEBRcT4
-	- https://www.youtube.com/watch?v=kyWllXOGMWQ&list=PLZV0a2jwt22vS1QAp0XJsFACeLNL5oN1g&index=5
-	- https://www.youtube.com/watch?v=K1OI-S0ET70&list=PLZV0a2jwt22vS1QAp0XJsFACeLNL5oN1g&index=3
+	- source1
+		- https://www.youtube.com/watch?v=MaHxZEBRcT4
+		- https://www.youtube.com/watch?v=kyWllXOGMWQ&list=PLZV0a2jwt22vS1QAp0XJsFACeLNL5oN1g&index=5
+		- https://www.youtube.com/watch?v=K1OI-S0ET70&list=PLZV0a2jwt22vS1QAp0XJsFACeLNL5oN1g&index=3
+	- source2
+		- https://github.com/ajaywadhara
