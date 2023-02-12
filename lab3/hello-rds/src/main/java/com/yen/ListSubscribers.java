@@ -1,7 +1,7 @@
 package com.yen;
 
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
+//import com.amazonaws.services.lambda.runtime.Context;
+//import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
