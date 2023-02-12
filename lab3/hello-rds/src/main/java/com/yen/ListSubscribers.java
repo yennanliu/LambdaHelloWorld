@@ -3,6 +3,7 @@ package com.yen;
 //import com.amazonaws.services.lambda.runtime.Context;
 //import com.amazonaws.services.lambda.runtime.RequestHandler;
 
+import com.yen.config.DataSourceProperties;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,21 @@ import java.util.List;
 public class ListSubscribers {
 
     private List<String> subscribers = new ArrayList<>();
+
+    // TODO: double check this syntax
+    private DataSourceProperties db;
+
+    // constructor
+    public ListSubscribers(){
+        this.db = new DataSourceProperties();
+    }
+
+    public ListSubscribers(DataSourceProperties db){
+        this.db = db;
+    }
+
+    public ListSubscribers(String db) {
+    }
 
     public List<String> handleRequest() {
 
