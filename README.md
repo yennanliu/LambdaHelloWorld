@@ -4,7 +4,8 @@
 ## Lab
 - Lab1 : Java AWS Lambda hello world
 - Lab2 : Java AWS Lambda with AWS core pkg
-- Lab3 : Java AWS Lambda with Kinesis/S3
+- Lab3 : Java AWS Lambda query RDS PostgreSQL
+- Lab4 : Java AWS Lambda with Kinesis/S3
 
 ## Ref
 - Python
