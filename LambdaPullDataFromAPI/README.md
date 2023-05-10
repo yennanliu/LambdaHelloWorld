@@ -7,7 +7,7 @@
 # grant execution permission to your script
 chmod 755 setup_infra.sh
 # please replace with your bucket nam
-./setup_infra.sh jsonplaceholder-1 --zip-file fileb://myDeploymentPackage.zip
+./setup_infra.sh jsonplaceholder-1
 
 # run script (local)
 ```

@@ -54,13 +54,13 @@ echo '{
 echo '[
   {
     "Id": "1",
-    "Arn": "arn:aws:lambda:'$AWS_REGION':'$AWS_ID':function:dataPull"
+    "Arn": "arn:aws:lambda:'$AWS_REGION':'$AWS_ID':function:dataPull2"
   }
 ]' > ./targets.json
 
 
 echo "Packaging local lambda_function.py"
-#cd dataPull
+#cd dataPull2
 #zip -r ../myDeploymentPackage.zip .
 zip -r myDeploymentPackage.zip .
 #cd ..
@@ -81,13 +81,13 @@ echo "Sleeping 10 seconds to allow policy to attach to role"
 sleep 10s
 
 echo "Creating Lambda function"
-aws lambda create-function --function-name dataPull --runtime python3.7 --role  arn:aws:iam::$AWS_ID":"role/lambda-s3-role --handler lambda_function.lambda_handler --zip-file fileb://myDeploymentPackage.zip  --timeout 60 --output text >> setup.log
+aws lambda create-function --function-name dataPull2 --runtime python3.7 --role  arn:aws:iam::$AWS_ID":"role/lambda-s3-role --handler lambda_function.lambda_handler --zip-file fileb://myDeploymentPackage.zip  --timeout 60 --output text >> setup.log
 
 echo "Creating cloudwatch rule to schedule lambda every 5 minutes"
 aws events put-rule --name my-scheduled-rule --schedule-expression 'rate(5 minutes)' --output text >> setup.log
 
 echo "Attaching lambda function to event and then to the rule"
-aws lambda add-permission --function-name dataPull --statement-id my-scheduled-event --action 'lambda:InvokeFunction' --principal events.amazonaws.com --source-arn arn:aws:events:$AWS_REGION:$AWS_ID:rule/my-scheduled-rule --output text >> setup.log
+aws lambda add-permission --function-name dataPull2 --statement-id my-scheduled-event --action 'lambda:InvokeFunction' --principal events.amazonaws.com --source-arn arn:aws:events:$AWS_REGION:$AWS_ID:rule/my-scheduled-rule --output text >> setup.log
 #aws events put-targets --rule my-scheduled-rule --targets file://targets.json --output text >> setup.log
 
 echo "Done"

@@ -81,7 +81,7 @@ def lambda_handler(event, context):
         s3_client.upload_file(LOCAL_FILE_SYS + "/" + f, S3_BUCKET, key + f)
 
 
-if __name__ == '__main__':
-    data = get_data(1, 10)
-    #print(f"data = {data}")
-    write_to_local(data, "jsonplaceholder_output.txt")
+# if __name__ == '__main__':
+#     data = get_data(1, 10)
+#     #print(f"data = {data}")
+#     write_to_local(data, "jsonplaceholder_output.txt")

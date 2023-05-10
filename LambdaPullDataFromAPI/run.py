@@ -1,1 +1,0 @@
-from lambda_func import *
