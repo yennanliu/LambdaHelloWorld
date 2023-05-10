@@ -45,3 +45,7 @@ hs_err_pid*
 
 */*/.DS_Store
 .DS_Store
+
+LambdaPullDataFromAPI/policy
+LambdaPullDataFromAPI/targets.json
+LambdaPullDataFromAPI/trust-policy.json	
