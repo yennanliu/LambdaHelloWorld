@@ -20,5 +20,4 @@ public enum StreamParam {
         return value;
     }
 
-
 }
