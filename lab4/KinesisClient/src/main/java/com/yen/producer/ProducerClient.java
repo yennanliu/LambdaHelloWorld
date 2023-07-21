@@ -1,4 +1,4 @@
-package com.yen.consumer;
+package com.yen.producer;
 
 // https://youtu.be/05yauiKMWBM?t=196
 
@@ -6,7 +6,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.AmazonKinesisClientBuilder;
 
-public class KinesisClient {
+public class ProducerClient {
 
     // TODO : change below
     public static final String AWS_ACCESS_KEY = "";

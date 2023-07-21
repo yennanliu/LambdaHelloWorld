@@ -9,7 +9,7 @@ import com.amazonaws.services.kinesis.model.PutRecordsResultEntry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yen.constant.StreamParam;
-import com.yen.consumer.KinesisClient;
+import com.yen.producer.ProducerClient;
 import com.yen.model.Order;
 
 import java.nio.ByteBuffer;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-public class App {
+public class ProducerApp {
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println(">>> App start");
@@ -26,7 +26,7 @@ public class App {
         // Step : send event to kinesis
 
         // 1. get client
-        AmazonKinesis kinesisClient = KinesisClient.getKinesisClient();
+        AmazonKinesis kinesisClient = ProducerClient.getKinesisClient();
 
         // keep sending data
         while (true){
