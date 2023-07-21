@@ -8,6 +8,7 @@ import com.amazonaws.services.kinesis.model.PutRecordsResult;
 import com.amazonaws.services.kinesis.model.PutRecordsResultEntry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.yen.constant.StreamParam;
 import com.yen.consumer.KinesisClient;
 import com.yen.model.Order;
 
@@ -18,11 +19,27 @@ import java.util.Random;
 import java.util.UUID;
 
 public class App {
-    public static void main(String[] args) {
-
-        String KINESIS_STEAM_NAME = "my_kinesis_stream_1";
+    public static void main(String[] args) throws InterruptedException {
 
         System.out.println(">>> App start");
+
+        // Step : send event to kinesis
+
+        // 1. get client
+        AmazonKinesis kinesisClient = KinesisClient.getKinesisClient();
+
+        // keep sending data
+        while (true){
+            System.out.println(">>> Send data start");
+            sendData(kinesisClient);
+            // sleep 3 sec
+            System.out.println(">>> Send data end");
+            Thread.sleep(3 * 1000);
+        }
+
+    }
+
+    private static void sendData(AmazonKinesis kinesisClient){
 
         List<String> productList = new ArrayList<String>();
         populateProductList(productList);
@@ -35,15 +52,10 @@ public class App {
         System.out.println("productList size = " + productList.size());
         System.out.println("orders size = " + orders.size());
 
-        // Step : send event to kinesis
-
-        // 1. get client
-        AmazonKinesis kinesisClient = KinesisClient.getKinesisClient();
-
         // 2. PutRecordRequest
         List<PutRecordsRequestEntry> requestEntryList = getRecordRequestList(orders);
         PutRecordsRequest recordRequest = new PutRecordsRequest();
-        recordRequest.setStreamName(KINESIS_STEAM_NAME);
+        recordRequest.setStreamName(StreamParam.KINESIS_STREAM_NAME.getValue());
         recordRequest.setRecords(requestEntryList);
 
         // 3. putRecord or putRecords ( 1 record or 500 records in single API call (batch) )
@@ -59,7 +71,6 @@ public class App {
             }
         }
 
-        System.out.println(">>> App end");
     }
 
     private static void populateProductList(List<String> productList){
