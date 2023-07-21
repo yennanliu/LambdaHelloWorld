@@ -2,6 +2,7 @@ package com.yen.Lambda;
 
 // https://www.youtube.com/watch?v=G9nSwSd64RU
 // Lambda func name : kinesis-order-lambda-1
+// NOTE !!! setup as handler as "com.yen.Lambda.KinesisOrderLambda1::handleRequest" in Lambda console
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.KinesisEvent;

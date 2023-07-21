@@ -57,4 +57,32 @@
 
     </dependencies>
 
+    <build>
+        <pluginManagement>
+
+            <plugins>
+
+                <!-- https://youtu.be/G9nSwSd64RU?t=496 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.2.4</version>
+                    <configuration>
+                        <createDependencyReducedPom>false</createDependencyReducedPom>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
+    </build>
+
 </project>
