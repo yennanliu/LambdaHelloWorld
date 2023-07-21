@@ -26,6 +26,20 @@
             <version>1.12.510</version>
         </dependency>
 
+        <!-- AWS Lambda -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+        <!-- AWS Lambda event -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-events</artifactId>
+            <version>3.11.0</version>
+        </dependency>
+
         <!-- json transform -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
