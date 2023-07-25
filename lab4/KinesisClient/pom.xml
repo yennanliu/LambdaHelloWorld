@@ -58,15 +58,34 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-
             <plugins>
 
-                <!-- https://youtu.be/G9nSwSd64RU?t=496 -->
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-shade-plugin</artifactId>-->
+<!--                    <version>2.4.1</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <phase>package</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>shade</goal>-->
+<!--                            </goals>-->
+<!--                            <configuration>-->
+<!--                                <transformers>-->
+<!--                                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+<!--                                        <mainClass>com.xxg.Main</mainClass>-->
+<!--                                    </transformer>-->
+<!--                                </transformers>-->
+<!--                            </configuration>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
+
+                <!-- https://docs.aws.amazon.com/lambda/latest/dg/java-package.html -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.2.4</version>
+                    <version>3.2.2</version>
                     <configuration>
                         <createDependencyReducedPom>false</createDependencyReducedPom>
                     </configuration>
@@ -80,9 +99,8 @@
                     </executions>
                 </plugin>
 
-            </plugins>
+        </plugins>
 
-        </pluginManagement>
     </build>
 
 </project>
