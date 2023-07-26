@@ -4,11 +4,9 @@ import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.model.PutRecordsRequest;
 import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
 import com.amazonaws.services.kinesis.model.PutRecordsResult;
-import com.amazonaws.services.kinesis.model.PutRecordsResultEntry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.yen.constant.StreamParam;
-import com.yen.model.Order;
+import com.yen.constant.KinesisName;
 import com.yen.producer.ProducerClient;
 import com.yen.util.DataTimeUtil;
 
@@ -55,7 +53,7 @@ public class ProducerApp2 {
         // 2. PutRecordRequest
         List<PutRecordsRequestEntry> requestEntryList = getRecordRequestList(records);
         PutRecordsRequest recordRequest = new PutRecordsRequest();
-        recordRequest.setStreamName(StreamParam.KINESIS_STREAM_NAME.getValue());
+        recordRequest.setStreamName(KinesisName.KINESIS_STREAM_2.getValue());
         recordRequest.setRecords(requestEntryList);
 
         // 3. putRecord or putRecords ( 1 record or 500 records in single API call (batch) )

@@ -1,13 +1,14 @@
 package com.yen.constant;
 
-public enum StreamParam {
+public enum KinesisName {
 
-    KINESIS_STREAM_NAME("KINESIS_STREAM_NAME", "my_kinesis_stream_1");
+    KINESIS_STREAM_1("KINESIS_STREAM_1", "my_kinesis_stream_1"),
+    KINESIS_STREAM_2("KINESIS_STREAM_2", "my_kinesis_stream_2");
 
     private String name;
     private String value;
 
-    StreamParam(String name, String value){
+    KinesisName(String name, String value){
         this.name = name;
         this.value = value;
     }
