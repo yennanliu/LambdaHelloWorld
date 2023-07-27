@@ -1,4 +1,4 @@
-package com.yen;
+package com.yen.kinesis.producer;
 
 import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.model.PutRecordsRequest;
@@ -7,7 +7,7 @@ import com.amazonaws.services.kinesis.model.PutRecordsResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yen.constant.KinesisName;
-import com.yen.producer.ProducerClient;
+import com.yen.kinesis.producer.ProducerClient;
 import com.yen.util.DataTimeUtil;
 
 import java.nio.ByteBuffer;

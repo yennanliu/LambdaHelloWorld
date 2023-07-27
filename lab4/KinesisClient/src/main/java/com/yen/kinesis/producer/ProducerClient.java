@@ -1,4 +1,4 @@
-package com.yen.producer;
+package com.yen.kinesis.producer;
 
 // https://youtu.be/05yauiKMWBM?t=196
 
