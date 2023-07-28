@@ -1,20 +1,16 @@
-package com.yen.kinesis.Lambda;
+package com.yen.cloudwatch;
 
 import com.yen.util.DataTimeUtil;
 
 import java.util.Random;
 
-public class HelloLambda {
-
-//    public String handleRequest(){
-//        return "hello! AWS Lambda";
-//    }
+public class CWatchProducer2 {
 
     public String handleRequest(){
 
         while (true){
             try {
-                System.out.println("--> send log to cloudwatch");
+                //System.out.println("--> send log to cloudwatch");
                 System.out.println(getLog());
                 Thread.sleep(3);
             } catch (InterruptedException e) {
@@ -45,5 +41,5 @@ public class HelloLambda {
 
         return today +  " default log";
     }
-
+    
 }

@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 import static com.yen.dev.workSpace1.cleanString;
 
-public class KinesisLogLambda1 {
+public class KLogLambda1 {
 
     /**
      *  NOTE !!!
@@ -20,8 +20,10 @@ public class KinesisLogLambda1 {
 
         System.out.println(">>> context = " + context.toString());
 
+        int cnt = 0;
         for (KinesisEvent.KinesisEventRecord record: event.getRecords()){
             // decode data in kinesis stream
+            cnt += 1;
             String data = StandardCharsets.UTF_8.decode(record.getKinesis().getData()).toString();
             String cleanStr = cleanString(data);
             String[] dataArray = cleanStr.split(" ");
@@ -29,6 +31,8 @@ public class KinesisLogLambda1 {
                 System.out.println(data);
             }
         }
+
+        System.out.println("------> process " + cnt + " records");
 
         return "OK";
     }
