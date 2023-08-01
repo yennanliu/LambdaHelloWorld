@@ -55,6 +55,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- s3 client -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.12.513</version>
+        </dependency>
+
     </dependencies>
 
     <build>
