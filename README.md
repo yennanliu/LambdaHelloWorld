@@ -7,6 +7,14 @@
 - Lab3 : Java AWS Lambda query RDS PostgreSQL
 - Lab4 : Java AWS Lambda with Kinesis/S3
 
+## CMD
+```bash
+# export maven path
+
+export M2_HOME="/Users/$USER/apache-maven-3.9.3"
+PATH="${M2_HOME}/bin:${PATH}"
+```
+
 ## Ref
 - Python
 	- https://www.youtube.com/watch?v=seaBeltaKhw&t=332s

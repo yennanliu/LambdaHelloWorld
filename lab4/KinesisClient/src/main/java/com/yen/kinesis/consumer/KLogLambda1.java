@@ -1,4 +1,4 @@
-package com.yen.kinesis.Lambda;
+package com.yen.kinesis.consumer;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.KinesisEvent;

@@ -1,4 +1,4 @@
-package com.yen.kinesis.Lambda;
+package com.yen.kinesis.consumer;
 
 // https://www.youtube.com/watch?v=G9nSwSd64RU
 // Lambda func name : kinesis-order-lambda-1
