@@ -4,10 +4,12 @@ import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.model.PutRecordsRequest;
 import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
 import com.amazonaws.services.kinesis.model.PutRecordsResult;
+import com.amazonaws.services.kinesis.model.Record;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yen.constant.KinesisName;
 import com.yen.kinesis.producer.ProducerClient;
+import com.yen.model.RawRecord;
 import com.yen.util.DataTimeUtil;
 
 import java.nio.ByteBuffer;
@@ -40,8 +42,8 @@ public class ProducerApp3 {
 
     private static void sendData(AmazonKinesis kinesisClient){
 
-        List<String> productList = new ArrayList<String>();
-        List<String> records = getOrderList(500);
+        //List<String> productList = new ArrayList<String>();
+        List<RawRecord> records = getOrderList(500);
         System.out.println("records size = " + records.size());
 
         // 2. PutRecordRequest
@@ -57,16 +59,16 @@ public class ProducerApp3 {
 
     }
 
-    private static List<String> getOrderList(int count){
-        List<String> records = new ArrayList<>();
+    private static List<RawRecord> getOrderList(int count){
+        List<RawRecord> records = new ArrayList<>();
         for (int i = 0; i < count; i++){
-            String data = getLog();
+            RawRecord data = getLog();
             records.add(data);
         }
         return records;
     }
 
-    private static String getLog(){
+    private static RawRecord getLog(){
 
         int MAX_VAL = 100;
         int MIN_VAL = 0;
@@ -77,21 +79,32 @@ public class ProducerApp3 {
 
         int x = n % 2;
 
+        RawRecord rawRecord = new RawRecord();
+        rawRecord.setMachine(UUID.randomUUID().toString());
+
         switch (x){
             case 1:
-                return today +  " [my-group-1] " + " INFO - DUMMY_EVENT_TYPE_1 id=1001, machine=fwerfe-ve24r52-42r5423fervr-43r43ce, port=3306, env=dev";
+                rawRecord.setEventType("type1");
+                rawRecord.setEnv("dev");
+                rawRecord.setId("1001");
+                rawRecord.setPort(3306);
+                //return today +  " [my-group-1] " + " INFO - DUMMY_EVENT_TYPE_1 id=1001, machine=fwerfe-ve24r52-42r5423fervr-43r43ce, port=3306, env=dev";
             case 0:
-                return today +  " [my-group-2] " + " INFO - DUMMY_EVENT_TYPE_2 id=20002, machine=24525-ve24r52-efere-43r43ce, port=9999, env=qa";
+                rawRecord.setEventType("type2");
+                rawRecord.setEnv("qa");
+                rawRecord.setId("2002");
+                rawRecord.setPort(9999);
+                //return today +  " [my-group-2] " + " INFO - DUMMY_EVENT_TYPE_2 id=20002, machine=24525-ve24r52-efere-43r43ce, port=9999, env=qa";
         }
 
-        return today +  " default log";
+        return rawRecord;
     }
 
 
-    private static List<PutRecordsRequestEntry> getRecordRequestList(List<String> inputs){
+    private static List<PutRecordsRequestEntry> getRecordRequestList(List<RawRecord> inputs){
         List<PutRecordsRequestEntry> records = new ArrayList<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        for (String input: inputs){
+        for (RawRecord input: inputs){
             System.out.println(">>> input = " + input);
             PutRecordsRequestEntry responseEntry = new PutRecordsRequestEntry();
             responseEntry.setData(ByteBuffer.wrap(gson.toJson(input).getBytes()));
