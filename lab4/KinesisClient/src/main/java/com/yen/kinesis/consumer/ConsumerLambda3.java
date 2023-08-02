@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.KinesisEvent;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.JSONType;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
@@ -54,10 +55,11 @@ public class ConsumerLambda3 {
             // https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-writing-lambda.html
 
             long unixtime = System.currentTimeMillis() / 1000L;
-            String filename = Long.toString(unixtime) + ".txt";
+            String filename = Long.toString(unixtime) + ".json";
             System.out.println(">>> write to s3 start");
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(size);
+            //metadata.setContentType("json");
             InputStream inputStream = new ByteArrayInputStream(data_array.toString().getBytes());
             PutObjectRequest putRequest = new PutObjectRequest(BUCKET_NAME, S3_OBJECT_KEY + "/" + filename, inputStream, metadata);
             s3Client.putObject(putRequest);
