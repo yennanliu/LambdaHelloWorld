@@ -9,8 +9,6 @@ import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 import com.yen.constant.KinesisName;
 import com.yen.model.StockTrade;
-import jdk.nashorn.internal.codegen.ApplySpecialization;
-
 import java.lang.invoke.MethodHandles;
 import java.nio.ByteBuffer;
 import java.util.UUID;
@@ -26,7 +24,7 @@ public class ProducerApp4 {
             StockTrade trade = new StockTrade();
             trade.setId(123);
             trade.setQuantity(100);
-            trade.setTradeType("XYZ");
+            trade.setTradeType("ABC");
             trade.setPrice(999.34);
 
             System.out.println(">>> record send to kinesis : " + trade.toString());

@@ -1,5 +1,9 @@
 package com.yen.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+
 public class RawRecord {
 
     private String eventType;
@@ -68,6 +72,15 @@ public class RawRecord {
                 ", port=" + port +
                 ", env='" + env + '\'' +
                 '}';
+    }
+
+    public byte[] toJsonAsBytes() {
+        final ObjectMapper JSON = new ObjectMapper();
+        try {
+            return JSON.writeValueAsBytes(this);
+        } catch (IOException e) {
+            return null;
+        }
     }
 
 }

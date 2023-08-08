@@ -77,24 +77,28 @@ public class ProducerApp3 {
 
         String today = DataTimeUtil.getToday();
 
-        int x = n % 2;
+        int x = n % 3;
 
         RawRecord rawRecord = new RawRecord();
         rawRecord.setMachine(UUID.randomUUID().toString());
 
         switch (x){
-            case 1:
-                rawRecord.setEventType("type1");
-                rawRecord.setEnv("dev");
-                rawRecord.setId("1001");
-                rawRecord.setPort(3306);
-                //return today +  " [my-group-1] " + " INFO - DUMMY_EVENT_TYPE_1 id=1001, machine=fwerfe-ve24r52-42r5423fervr-43r43ce, port=3306, env=dev";
             case 0:
                 rawRecord.setEventType("type2");
                 rawRecord.setEnv("qa");
                 rawRecord.setId("2002");
                 rawRecord.setPort(9999);
                 //return today +  " [my-group-2] " + " INFO - DUMMY_EVENT_TYPE_2 id=20002, machine=24525-ve24r52-efere-43r43ce, port=9999, env=qa";
+            case 1:
+                rawRecord.setEventType("type1");
+                rawRecord.setEnv("dev");
+                rawRecord.setId("1001");
+                rawRecord.setPort(3306);
+            case 2:
+                rawRecord.setEventType("type3");
+                rawRecord.setEnv("dev");
+                rawRecord.setId("3003");
+                rawRecord.setPort(22);
         }
 
         return rawRecord;

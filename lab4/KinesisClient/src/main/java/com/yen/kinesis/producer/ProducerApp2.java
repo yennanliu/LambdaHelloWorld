@@ -53,7 +53,7 @@ public class ProducerApp2 {
         // 2. PutRecordRequest
         List<PutRecordsRequestEntry> requestEntryList = getRecordRequestList(records);
         PutRecordsRequest recordRequest = new PutRecordsRequest();
-        recordRequest.setStreamName(KinesisName.KINESIS_STREAM_2.getValue());
+        recordRequest.setStreamName(KinesisName.KINESIS_STREAM_2_1.getValue());
         recordRequest.setRecords(requestEntryList);
 
         // 3. putRecord or putRecords ( 1 record or 500 records in single API call (batch) )
@@ -91,9 +91,9 @@ public class ProducerApp2 {
 
         switch (x){
             case 1:
-                return today +  " [my-group-1] " + " INFO - DUMMY_EVENT_TYPE_1 id=1001, machine=fwerfe-ve24r52-42r5423fervr-43r43ce, port=3306, env=dev";
+                return today +  " [my-group-1] " + " INFO - {\"event\": \"my_event_1\", \"id\": 777,  \"my_val\": true, \"uuid\": \"43fefge-4c2d-4729-876c-45vefv\"}" + "\n";
             case 0:
-                return today +  " [my-group-2] " + " INFO - DUMMY_EVENT_TYPE_2 id=20002, machine=24525-ve24r52-efere-43r43ce, port=9999, env=qa";
+                return today +  " [my-group-2] " + " INFO - {\"event\": \"my_event_2\", \"id\": 9999,  \"my_val\": false, \"uuid\": \"vre-345-dfvd-ddfv-ddf\"}" + "\n";
         }
 
         return today +  " default log";
