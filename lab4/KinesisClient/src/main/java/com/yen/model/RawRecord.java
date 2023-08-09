@@ -3,8 +3,11 @@ package com.yen.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class RawRecord {
+
+    private Long timeStamp;
 
     private String eventType;
     private String id;
@@ -63,10 +66,19 @@ public class RawRecord {
         this.env = env;
     }
 
+    public Long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     @Override
     public String toString() {
-        return "Record{" +
-                "eventType='" + eventType + '\'' +
+        return "RawRecord{" +
+                "timeStamp=" + timeStamp +
+                ", eventType='" + eventType + '\'' +
                 ", id='" + id + '\'' +
                 ", machine='" + machine + '\'' +
                 ", port=" + port +

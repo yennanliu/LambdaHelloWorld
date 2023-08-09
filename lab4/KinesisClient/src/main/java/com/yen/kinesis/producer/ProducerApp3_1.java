@@ -14,6 +14,8 @@ import com.yen.util.DataTimeUtil;
 
 import java.lang.invoke.MethodHandles;
 import java.nio.ByteBuffer;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Random;
 import java.util.UUID;
 
@@ -27,37 +29,34 @@ public class ProducerApp3_1 {
 
         while (true){
 
-//            int MAX_VAL = 100;
-//            int MIN_VAL = 0;
-//            Random rn = new Random();
-//            int n = rn.nextInt((MAX_VAL - MIN_VAL) + 1);
-
             String today = DataTimeUtil.getToday();
 
             int x = n % 3;
 
             System.out.println(" n = " + n + " x = " + x);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             RawRecord rawRecord = new RawRecord();
-            rawRecord.setMachine(UUID.randomUUID().toString());
+            rawRecord.setId(UUID.randomUUID().toString());
+            rawRecord.setTimeStamp(timestamp.getTime());
 
             switch (n % 3){
                 case 0:
-                    rawRecord.setEventType("type2");
+                    rawRecord.setEventType("event_a");
                     rawRecord.setEnv("qa");
-                    rawRecord.setId("2002");
+                    rawRecord.setMachine("2002");
                     rawRecord.setPort(9999);
                     break;
                 case 1:
-                    rawRecord.setEventType("type1");
+                    rawRecord.setEventType("event_b");
                     rawRecord.setEnv("dev");
-                    rawRecord.setId("1001");
+                    rawRecord.setMachine("1001");
                     rawRecord.setPort(3306);
                     break;
                 case 2:
-                    rawRecord.setEventType("type3");
+                    rawRecord.setEventType("event_c");
                     rawRecord.setEnv("dev");
-                    rawRecord.setId("3003");
+                    rawRecord.setMachine("3003");
                     rawRecord.setPort(22);
                     break;
             }
@@ -66,6 +65,7 @@ public class ProducerApp3_1 {
 
             AmazonKinesis kinesisClient = ProducerClient.getKinesisClient();
             sendStockTrade(rawRecord, kinesisClient, KinesisName.KINESIS_STREAM_3_1.getValue());
+            //sendStockTrade(rawRecord, kinesisClient, KinesisName.KINESIS_STREAM_DEV_1.getValue());
 
             n += 1;
         }
