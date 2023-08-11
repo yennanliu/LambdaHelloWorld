@@ -2,15 +2,16 @@ package com.yen.kinesis.producer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.kinesis.AmazonKinesis;
-import com.amazonaws.services.kinesis.model.PutRecordRequest;
-import com.amazonaws.services.kinesis.model.PutRecordResult;
-import com.amazonaws.services.kinesis.model.PutRecordsResult;
+import com.amazonaws.services.kinesis.model.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 import com.yen.constant.KinesisName;
 import com.yen.model.RawRecord;
 import com.yen.util.DataTimeUtil;
 import com.yen.util.EncodeDecodeUtil;
+import com.yen.util.KinesisUtil;
 
 import java.lang.invoke.MethodHandles;
 import java.nio.ByteBuffer;
@@ -61,6 +62,7 @@ public class ProducerApp3_1_Multi {
         for (int i = 0; i < count; i++){
             RawRecord data = getRecord();
             records.add(data);
+            //records.add(data.toString());
         }
         return records;
     }
@@ -108,24 +110,31 @@ public class ProducerApp3_1_Multi {
         System.out.println("records size = " + records.size() + " thread = " + Thread.currentThread().getName());
 
         //byte[] bytes = records.toJsonAsBytes();
-        byte[] bytes = EncodeDecodeUtil.toJsonAsBytes(records);
-        if (bytes == null) {
-            logger.warn("Could not get JSON bytes for record");
-            return;
-        }
+//        byte[] bytes = EncodeDecodeUtil.toJsonAsBytes(records);
+//        if (bytes == null) {
+//            logger.warn("Could not get JSON bytes for record");
+//            return;
+//        }
 
-        PutRecordRequest putRecord = new PutRecordRequest();
-        putRecord.setStreamName(streamName);
+        List<PutRecordsRequestEntry> requestEntryList = KinesisUtil.getRecordRequestList(records);
+
+
+        PutRecordsRequest recordRequest = new PutRecordsRequest();
+        recordRequest.setStreamName(streamName);
+        recordRequest.setRecords(requestEntryList);
+        //PutRecordRequest putRecord = new PutRecordRequest();
+        //putRecord.setStreamName(streamName);
+
         // We use the ticker symbol as the partition key, explained in the Supplemental Information section below.
-        putRecord.setPartitionKey(UUID.randomUUID().toString());
-        putRecord.setData(ByteBuffer.wrap(bytes));
+        //recordRequest.setPartitionKey(UUID.randomUUID().toString());
+        //recordRequest.setData(ByteBuffer.wrap(bytes));
         // NOTE : we need to setup partition key here when send to kinesis
-        putRecord.setPartitionKey(UUID.randomUUID().toString());
+        //putRecord.setPartitionKey(UUID.randomUUID().toString());
 
         try {
-            PutRecordResult result = kinesisClient.putRecord(putRecord);
+            PutRecordsResult result = kinesisClient.putRecords(recordRequest);
             System.out.println(">>> Put record result = " + result);
-//            System.out.println(">>> Failed record count = " + result.getFailedRecordCount());
+            System.out.println(">>> Put record fail count = " + result.getFailedRecordCount());
         } catch (AmazonClientException ex) {
             logger.warn("Error sending record to Amazon Kinesis.", ex);
         }
